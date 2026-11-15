@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   FYP360 V0.1 design tokens — macOS-style glass.
+   Change colours here; every page uses these names.
+   ------------------------------------------------------------------ */
+@theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+
+  --color-ink: #1d1d1f;          /* main text */
+  --color-ink-2: #515154;        /* secondary text */
+  --color-ink-3: #86868b;        /* hints, placeholders */
+  --color-line: rgb(0 0 0 / 0.08);
+  --color-field: rgb(0 0 0 / 0.05);
+  --color-accent: #0a72e8;       /* links, selection (macOS blue) */
+  --color-accent-soft: rgb(10 114 232 / 0.12);
+  --color-primary: #111111;      /* main buttons (black, like the login reference) */
+  --color-good: #1f8a3b;
+  --color-good-soft: rgb(31 138 59 / 0.12);
+  --color-warn: #b25e00;
+  --color-warn-soft: rgb(255 159 10 / 0.16);
+  --color-bad: #d70015;
+  --color-bad-soft: rgb(255 59 48 / 0.12);
+
+  --radius-window: 22px;
+}
+
+html, body, #root { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background: #2b2140;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Frosted glass surfaces */
+.glass {
+  background: rgb(255 255 255 / 0.62);
+  backdrop-filter: blur(28px) saturate(170%);
+  -webkit-backdrop-filter: blur(28px) saturate(170%);
+  border: 1px solid rgb(255 255 255 / 0.55);
+}
+.glass-strong {
+  background: rgb(255 255 255 / 0.8);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  border: 1px solid rgb(255 255 255 / 0.6);
+}
+.glass-sidebar {
+  background: rgb(246 246 248 / 0.55);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+}
+.window-shadow {
+  box-shadow: 0 30px 80px -20px rgb(0 0 0 / 0.45), 0 0 0 0.5px rgb(0 0 0 / 0.18);
+}
+
+/* Slideshow crossfade */
+.slide { transition: opacity 1.4s ease, transform 8s ease; }
+
+@keyframes toast-in { from { opacity: 0; transform: translateY(-8px) scale(.98); } to { opacity: 1; transform: none; } }
+.toast-in { animation: toast-in .25s ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  .slide { transition: opacity .3s linear; transform: none !important; }
+  .toast-in { animation: none; }
+}
+
+:focus-visible { outline: 3px solid rgb(10 114 232 / 0.45); outline-offset: 2px; }
